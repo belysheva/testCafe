@@ -1,6 +1,6 @@
 package ru.cafe.web;
 
-import ru.cafe.service.Service;
+import ru.cafe.service.ServiceImpl;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,10 +12,10 @@ import java.sql.SQLException;
 @WebServlet("/getTrafficAvg")
 public class TrafficServlet extends HttpServlet {
 //TODO handle exceptions properly
-    Service service;
+    ServiceImpl serviceImpl;
     {
         try {
-            service = new Service();
+            serviceImpl = new ServiceImpl();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -25,7 +25,7 @@ public class TrafficServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            request.setAttribute("traffic", service.trafficToJSON(service.calcAvg()));
+            request.setAttribute("traffic", serviceImpl.getAvgTraffic(serviceImpl.calcAvg()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
