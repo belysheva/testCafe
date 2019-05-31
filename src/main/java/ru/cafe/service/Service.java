@@ -65,7 +65,6 @@ public class Service {
             public void run() {
                 try {
                     createTraffic();
-                    System.out.println("traffic added");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
